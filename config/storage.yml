@@ -1,10 +1,20 @@
 test:
-  service: Disk
-  root: <%= Rails.root.join("tmp/storage") %>
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  region: us-east-1
+  bucket: test
+  endpoint: "http://172.17.0.2:9000"
+  force_path_style: true
 
 local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
+  service: S3
+  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
+  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  region: us-east-1
+  bucket: local
+  endpoint: "http://172.17.0.2:9000"
+  force_path_style: true
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
