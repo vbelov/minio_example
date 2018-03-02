@@ -1,6 +1,9 @@
 require 'test_helper'
+require 'support/bucket_helper'
 
 class MinioTest < ActiveSupport::TestCase
+  include BucketHelper
+
   test "creates bucket successfully" do
     bucket = get_missing_bucket.tap(&:create)
     assert bucket.exists?
@@ -22,46 +25,7 @@ class MinioTest < ActiveSupport::TestCase
   end
 
 
-  def minio
-    ActiveStorage::Blob.service
-  end
-
   def key
     @key ||= FFaker::Lorem.word
-  end
-
-  def file_content
-    @file_content ||= FFaker::Lorem.paragraph
-  end
-
-  def get_missing_bucket
-    bucket = ActiveStorage::Blob.service.bucket
-    delete_bucket(bucket)
-    bucket
-  end
-
-  def delete_bucket(bucket)
-    if bucket.exists?
-      keys = bucket.objects.map(&:key)
-      bucket.delete_objects(
-        delete: {
-          objects: keys.map { |key| {key: key} }
-        }
-      )
-      bucket.delete
-    end
-  end
-
-  def empty_bucket
-    get_missing_bucket.tap(&:create)
-  end
-
-  def within_bucket
-    begin
-      bucket = empty_bucket
-      yield bucket
-    ensure
-      delete_bucket(bucket)
-    end
   end
 end
