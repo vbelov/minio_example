@@ -1,0 +1,17 @@
+= link_to 'Добавить', new_enrico_item_path, class: 'btn btn-default'
+
+table.table
+  thead
+    tr
+      th Filename
+      th
+  tbody
+    - @items.each do |item|
+      tr
+        td= item.content_blob.filename
+        td
+          = link_to 'View', item.content_blob.service_url, target: '_blank', class: 'btn btn-default'
+          = ' '
+          = link_to 'Download', item.content_blob.service_url(disposition: :attachment), class: 'btn btn-default'
+          = ' '
+          = link_to 'Remove', item, method: :delete, class: 'btn btn-danger', data: {confirm: 'Please confirm'}

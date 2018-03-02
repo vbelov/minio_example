@@ -37,6 +37,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'aws-sdk-s3', require: false
+gem 'bootstrap-sass'
+gem 'slim'
+gem 'jquery-rails'
+gem 'simple_form'
 gem 'ffaker'
 
 group :development, :test do
