@@ -9,20 +9,20 @@ test:
 
 local:
   service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
+  access_key_id: "42N30OM85X39B0HCFQGJ"
+  secret_access_key: "Dbx12SLo97/xPT8Hjn5X+oGBj9SZSAFCrmqTwdhW"
   region: us-east-1
   bucket: local
-  endpoint: "http://172.17.0.2:9000"
+  endpoint: "http://172.28.128.3:9000"
   force_path_style: true
 
 production:
   service: S3
-  access_key_id: "Q3AM3UQ867SPQQA43P2F"
-  secret_access_key: "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG"
+  access_key_id: "ZHYIWUE6Y68E3KJ9YIBA"
+  secret_access_key: "Za7bGadj5wjbSj3pWkrITOkj8TEufpilKVODf+Ed"
   region: us-east-1
   bucket: minio-ror-example
-  endpoint: "https://play.minio.io:9000"
+  endpoint: "http://ec2-35-156-218-124.eu-central-1.compute.amazonaws.com:9000"
   force_path_style: true
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
